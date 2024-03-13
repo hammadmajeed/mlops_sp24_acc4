@@ -25,6 +25,7 @@ Within docker-compose.yml, you can specify a file that contains the environment 
 Make sure to add .env to .gitignore, then set the credentials within the .env file like:
 
 SOME_USERNAME=myUser
+
 SOME_PWD_VAR=myPwd
 
 Store the .env file locally or in a secure location where the rest of the team can grab it.

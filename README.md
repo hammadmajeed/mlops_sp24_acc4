@@ -15,6 +15,8 @@ Use the service name instead mongodb:27017, as Docker DNS makes the containers a
 
 This command will create a new secret called my_secret, containing the password “mypassword.” Notice the use of the — at the end of the command, which tells Docker to read the secret’s value from standard input instead of a file
 
+## Using environment variable for secret management 
+
 Within docker-compose.yml, you can specify a file that contains the environment variables for the container:
 
  env_file:

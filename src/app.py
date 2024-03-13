@@ -13,20 +13,19 @@ def get_rows(database_name, collection_name, auth_source):
         raise ValueError("MongoDB username or password not provided in environment variables")
 
     # MongoDB connection URI with authentication
-    uri = f"mongodb://{username}:{password}@localhost:27017/{auth_source}"
+    uri = f"mongodb://{username}:{password}@mongodb:27017/?{auth_source}"
 
     # Connect to MongoDB
     client = pymongo.MongoClient(uri)
-
+    print(client);
     # Select database
     db = client[database_name]
 
     # Select collection
     collection = db[collection_name]
-    print(collection)
+
     # List all documents in the collection
     documents = [doc for doc in collection.find()]
-
     return documents
 
 @app.route('/')
@@ -36,9 +35,11 @@ def index():
         collection_name = "my_collection"  # Change this to your actual collection name
         auth_source = "authSource=admin"  # Change this to your MongoDB authentication database
         rows = get_rows(database_name, collection_name, auth_source)
+        print(rows)
         return render_template('index.html', rows=rows)
     except Exception as e:
         return str(e), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)

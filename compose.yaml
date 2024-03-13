@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2.24.6'
 services:
   my-app:
     build: . 
@@ -7,6 +7,7 @@ services:
       - MONGODB_PASSWORD=secret
     ports:
       - 5000:5000
+
   mongodb:
     image: mongo:4.4.29-focal
     ports:

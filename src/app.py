@@ -8,12 +8,14 @@ def get_rows(database_name, collection_name, auth_source):
     # Retrieve username and password from environment variables
     username = os.environ.get('MONGODB_USERNAME')
     password = os.environ.get('MONGODB_PASSWORD')
+    mongo_service = os.environ.get('MONGO_SERVICE_SERVICE_HOST')
+    mongo_port = os.environ.get('MONGO_SERVICE_SERVICE_PORT')
 
     if not username or not password:
         raise ValueError("MongoDB username or password not provided in environment variables")
 
     # MongoDB connection URI with authentication
-    uri = f"mongodb://{username}:{password}@mongodb:27017/?{auth_source}"
+    uri = f"mongodb://{username}:{password}@{mongo_service}:{mongo_port}/?{auth_source}"
 
     # Connect to MongoDB
     client = pymongo.MongoClient(uri)
